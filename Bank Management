@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <string.h>
+int list();
+void last();
+void Deposit();
+void Withdraw();
+void Transfer();
+void CheckDetail();
+int TotalAmount=10000,Amount,Amo,Tr,TotalDeposit=0,TotalWith=0,TotalTr=0;
+int Acc;
+char a[50];
+void main()
+{
+    system("clrscr");
+    printf("\nEnter Name: ");
+    gets(a);
+    printf("\nEnter Account Number: ");
+    scanf("%d", &Acc);
+    while (1)
+{
+    system("clrscr");
+    switch(list())
+    {
+    case 1:
+        Deposit();
+        TotalDeposit+=Amount;
+        break;
+    case 2:
+        Withdraw();
+        if(Amo<=TotalAmount)
+           TotalWith+=Amo;
+        break;
+    case 3:
+        Transfer();
+        if(Tr<=TotalAmount)
+            TotalTr+=Tr;
+        break;
+    case 4:
+        CheckDetail();
+        break;
+    case 5:
+        system("clrscr");
+        last();
+        getch();
+        exit(0);
+    default:
+        printf("\nInvalid Choice");
+    }
+    getch();
+ }
+
+}
+int list()
+{
+    int ch;
+    printf("\n1. Deposit Amount: ");
+    printf("\n2. Withdraw Amount: ");
+    printf("\n3. Transfer Amount: ");
+    printf("\n4. Check Detail: ");
+    printf("\n5. Exit ");
+    printf("\nEnter your choice ");
+    scanf("%d" ,&ch);
+    return(ch);
+}
+void Deposit()
+{
+    printf("\nEnter Amount for deposit:  ");
+    scanf("%d" ,&Amount);
+    TotalAmount+=Amount;
+}
+void Withdraw()
+{
+    printf("\nEnter Amount for withdraw: ");
+    scanf("%d" ,&Amo);
+    if(Amo<=TotalAmount)
+        TotalAmount-=Amo;
+    else
+        printf("\nWithdraw Not Possible ,Amount Insufficient");
+}
+void Transfer()
+{
+     printf("\nEnter Amount for Transfer: ");
+     scanf("%d", &Tr);
+     if(Tr<=TotalAmount)
+        TotalAmount-=Tr;
+     else
+         printf("\nTransfer Not Possible ,Amount Insufficient");
+}
+void CheckDetail()
+{
+    printf("\nTotal Amount=%d",TotalAmount);
+    printf("\nTotal Deposit Amount=%d",TotalDeposit);
+    printf("\nTotal Withdrawal Amount=%d",TotalWith);
+    printf("\nTotal Transfered Amount=%d",TotalTr);
+}
+void last()
+{
+    printf("\nYour Name=%s ",a);
+    printf("\nAccount Number=%d",Acc);
+    printf("\nTotal Amount=%d",TotalAmount);
+    printf("\nTotal Deposit Amount=%d",TotalDeposit);
+    printf("\nTotal Withdrawal Amount=%d",TotalWith);
+    printf("\nTotal Transfered Amount=%d",TotalTr);
+}
